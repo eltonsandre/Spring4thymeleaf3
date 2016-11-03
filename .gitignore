@@ -1,5 +1,8 @@
 /target/
 /.settings/
+*/.settings/
 */.git
 /.project
+*/.project
 /.classpath
+*/.classpath

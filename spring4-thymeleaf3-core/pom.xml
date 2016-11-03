@@ -10,10 +10,19 @@
 	</parent>
 
 	<artifactId>spring4-thymeleaf3-core</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Modulo CORE</name>
+	<description>Modulo CORE</description>
+
+	<organization>
+		<name>Elton Sandré</name>
+		<url>www.google.com.br</url>
+	</organization>
+
 
 	<dependencies>
-		<!-- =======================================================vvvv Spring -->
-
+		<!-- ==================================== Spring Framework ====================================== -->
 		<!-- Spring Context Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -33,10 +42,7 @@
 		</dependency>
 
 
-
-		<!-- =======================================================^^^^ THYMELEAF -->
-		<!-- =======================================================vvvv Hibernate -->
-
+		<!-- ==================================== Hibernate ====================================== -->
 		<!-- Bean Validation / Hibernate Validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -49,9 +55,6 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
 
-		<!-- =======================================================^^^^ Hibernate -->
-
-
 		<!-- MySQL Driver -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -59,50 +62,36 @@
 		</dependency>
 
 
-		<!-- =======================================================vvvv commons -->
-
+		<!-- ==================================== Commons ====================================== -->
 		<!-- Apache Bean Utils -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
 
-		<!-- =======================================================^^^^ commons -->
-		<!-- =======================================================vvvv Logging -->
 
+		<!-- ==================================== Logging ====================================== -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 		</dependency>
 
-
-
-
 		<!-- Jackson - JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-		</dependency>
-
-		<!-- Cache - Guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
 		</dependency>
 
 	</dependencies>

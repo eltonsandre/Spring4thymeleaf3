@@ -1,5 +1,5 @@
-package br.com.estudo.controller;
+package br.com.modulo.web.controller;
 
-public class AbstractController {
+public abstract class AbstractController {
 
 }

@@ -1,4 +1,4 @@
-package br.com.estudo.config;
+package br.com.modulo.web.config;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -35,7 +35,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.google.common.cache.CacheBuilder;
 
-import br.com.estudo.controller.AbstractController;
+import br.com.modulo.web.controller.AbstractController;
 
 @Configuration
 @ComponentScan(basePackageClasses = { AbstractController.class })
