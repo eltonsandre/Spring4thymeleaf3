@@ -1,13 +1,16 @@
 package br.com.modulo.core.config;
 
+import java.sql.SQLException;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,9 +19,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import br.com.modulo.core.repository.AbstractRepository;
 import br.com.modulo.core.model.AbstractModel;
-
+import br.com.modulo.core.repository.AbstractRepository;
 
 @Configuration
 @ComponentScan(basePackageClasses = AbstractRepository.class)
@@ -28,18 +30,55 @@ public class JPAConfig {
 
 	@Bean
 	public DataSource dataSource() {
-		JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
-		dataSourceLookup.setResourceRef(true);
-		return dataSourceLookup.getDataSource("jdbc/brewerDB");
+		/*
+		 * //org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+		 * JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
+		 * dataSourceLookup.setResourceRef(true); return
+		 * dataSourceLookup.getDataSource("jdbc/brewerDB");
+		 */
+		return dataSourceH2();
+	}
+
+	/**
+	 * H2 dataSource do H2
+	 */
+	private DataSource dataSourceH2() {// 01
+		try {
+			// aqui inicio um novo servidor tcp e permito que ele seja acessivel
+			// desde qualquer outro pc na rede
+			Server.createTcpServer(new String[] { "-tcpAllowOthers" }).start();
+			System.out.println("H2: Server createTcpServer().start()");
+			// aqui eu inicio o servidor web inbutido para ser acessivel desde
+			// http://localhost:8082, e acesivel desde qualquer outro pc na rede
+			Server.createWebServer().start();
+			System.out.println("H2: Server createWebServer().start()");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("org.h2.Driver");
+		dataSource.setUrl("jdbc:h2:~/test;DB_CLOSE_DELAY=-1");
+		// dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+		dataSource.setUsername("sa");
+		dataSource.setPassword("");
+		return dataSource;
 	}
 
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.MYSQL);
-		adapter.setShowSql(false);
-		adapter.setGenerateDdl(false);
-		adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+		// adapter.setDatabase(Database.MYSQL);
+		// adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+		// adapter.setShowSql(false);
+		// adapter.setGenerateDdl(false);
+		// return adapter;
+
+		adapter.setDatabase(Database.H2);
+		adapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
+		adapter.setShowSql(true);
+		adapter.setGenerateDdl(true);
+
 		return adapter;
 	}
 

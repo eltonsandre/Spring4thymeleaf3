@@ -79,8 +79,10 @@
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 
 		<!-- Logging -->
-		<log4j.version>2.6</log4j.version>
-		<jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
+		<!-- JDK 7 or > <log4j.version>2.6</log4j.version> <jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version> -->
+		<!-- JDK 6 -->
+		<log4j.version>2.3</log4j.version>
+		<jcl-over-slf4j.version>1.6.1</jcl-over-slf4j.version>
 	</properties>
 
 	<build>
@@ -215,6 +217,13 @@
 
 
 
+			<!-- MySQL Driver -->
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.191</version>
+				<scope>runtime</scope>
+			</dependency>
 			<!-- MySQL Driver -->
 			<dependency>
 				<groupId>mysql</groupId>
