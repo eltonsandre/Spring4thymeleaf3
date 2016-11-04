@@ -8,15 +8,15 @@ import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import br.com.modulo.core.config.JPAConfig;
+import br.com.modulo.core.config.ServiceConfig;
 import br.com.modulo.web.config.WebConfig;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { JPAConfig.class };
-		// Return New Class<?>[] { JPAConfig.class, ServiceConfig.class,
-		// SecurityConfig.class };
+		return new Class<?>[] { JPAConfig.class , ServiceConfig.class};
+		// Return New Class<?>[] { JPAConfig.class, ServiceConfig.class, SecurityConfig.class };
 	}
 
 	@Override
