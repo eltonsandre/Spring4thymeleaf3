@@ -23,6 +23,7 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
@@ -36,6 +37,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import com.google.common.cache.CacheBuilder;
 
 import br.com.modulo.web.controller.AbstractController;
+import br.com.modulo.web.thymeleaf.layout.support.ThymeleafLayoutInterceptor;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
 @ComponentScan(basePackageClasses = { AbstractController.class })
@@ -45,6 +48,11 @@ import br.com.modulo.web.controller.AbstractController;
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
 	private ApplicationContext applicationContext;
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new ThymeleafLayoutInterceptor());
+    }
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -65,7 +73,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(this.templateResolver());
 
-		// engine.addDialect(new LayoutDialect());
+		 //engine.addDialect(new LayoutDialect());
 		return engine;
 	}
 
