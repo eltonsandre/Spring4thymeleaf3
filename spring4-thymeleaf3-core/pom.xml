@@ -56,15 +56,21 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
 		</dependency>
-		<!-- MySQL Driver -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mchange</groupId>
+			<artifactId>mchange-commons-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
 		</dependency>
 
+		<!-- MySQL Driver <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId>
+			</dependency> <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId>
+			</dependency> -->
 
 		<!-- ==================================== Commons ====================================== -->
 		<!-- Apache Bean Utils -->
