@@ -1,4 +1,4 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,8 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import br.com.modulo.core.model.Endereco;
 
 /**
  * @author elton.santos

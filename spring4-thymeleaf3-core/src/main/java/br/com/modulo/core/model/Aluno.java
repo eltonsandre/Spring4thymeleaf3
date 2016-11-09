@@ -1,5 +1,6 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,9 +12,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Aluno")
-public class Aluno extends Pessoa  {
+public class Aluno extends Pessoa implements Serializable {
 
-	private static final long serialVersionUID = 1185685654698743315L;
+	private static final long serialVersionUID = -485494151029178023L;
 
 	private boolean ativo;
     private String codigo;

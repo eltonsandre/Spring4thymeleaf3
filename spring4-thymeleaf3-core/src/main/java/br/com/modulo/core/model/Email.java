@@ -1,13 +1,34 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "email")
 public class Email implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2930773781038389493L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_contato")
+	private Contato contato;
+
 	private String email;
+
+	@Column(name = "tipo_email")
 	private String tipoEmail;
 
 	@Override
@@ -41,6 +62,14 @@ public class Email implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
 	}
 
 	public String getEmail() {

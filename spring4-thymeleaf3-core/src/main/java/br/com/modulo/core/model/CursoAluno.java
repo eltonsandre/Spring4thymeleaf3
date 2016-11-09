@@ -1,4 +1,4 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,10 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "curso_aluno")
@@ -30,6 +33,8 @@ public class CursoAluno implements Serializable {
 	@Column(name = "data_cadastro")
 	private Date dataCadastro;
 
+	@OneToOne
+	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;
 
 	@Column(name = "maximo_aulas")
@@ -43,7 +48,7 @@ public class CursoAluno implements Serializable {
 
 	private Boolean status;
 
-	@OneToMany(mappedBy = "curso_aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Agendamento> agendamentos = new ArrayList<Agendamento>();
 
 	public Long getId() {
@@ -56,6 +61,10 @@ public class CursoAluno implements Serializable {
 
 	public Aluno getAluno() {
 		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	public Integer getMaximoAulas() {
@@ -84,10 +93,6 @@ public class CursoAluno implements Serializable {
 
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
 	}
 
 	public void setMaximoAulas(Integer maximoAulas) {

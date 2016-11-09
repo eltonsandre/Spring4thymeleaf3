@@ -1,4 +1,4 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
 import java.util.Date;
 

@@ -1,6 +1,7 @@
 
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,8 +16,8 @@ import javax.persistence.TemporalType;
  * @author Elton Sandré
  */
 @Entity
-@Table(name = "Funcionario")
-public class Funcionario extends Pessoa {
+@Table(name = "funcionario")
+public class Funcionario extends Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 4126290102201393045L;
 

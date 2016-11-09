@@ -1,6 +1,5 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -24,16 +24,13 @@ import org.hibernate.validator.group.GroupSequenceProvider;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.modulo.core.model.Endereco;
-import br.com.modulo.core.model.TipoPessoa;
 import br.com.modulo.core.model.validation.TipoPessoaGroupSequenceProvider;
 import br.com.modulo.core.model.validation.group.CnpjGroup;
 import br.com.modulo.core.model.validation.group.CpfGroup;
 
+@MappedSuperclass
 @GroupSequenceProvider(TipoPessoaGroupSequenceProvider.class)
-public abstract class Pessoa implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public abstract class Pessoa  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,11 +64,14 @@ public abstract class Pessoa implements Serializable {
 	private String naturalidade;
 	private Nascionalidade nascionalidade;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "sexo")
 	private Sexo sexo;
 
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "estato_civil")
 	private EstatoCivil estatoCivil;
 
@@ -84,7 +84,6 @@ public abstract class Pessoa implements Serializable {
 	private Endereco endereco;
 
 	@JsonIgnore
-	@Embedded
 	private Contato contato;
 
 	@PrePersist

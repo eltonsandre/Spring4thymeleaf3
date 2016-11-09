@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.hibernate.validator.spi.group.DefaultGroupSequenceProvider;
 
-import br.com.modulo.core.model.escola.Pessoa;
+import br.com.modulo.core.model.Pessoa;
 
 
 public class TipoPessoaGroupSequenceProvider implements DefaultGroupSequenceProvider<Pessoa> {

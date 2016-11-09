@@ -1,4 +1,4 @@
-package br.com.modulo.core.model.escola;
+package br.com.modulo.core.model;
 
 import java.util.Date;
 
@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -27,10 +29,19 @@ public class Agendamento {
 	@Column(name = "data_cadastro")
 	private Date dataCadastro;
 
+	@OneToOne
+	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;
+
+	@OneToOne
+	@JoinColumn(name = "id_veiculo")
 	private Veiculo veiculo;
-	private String status;
+
+	@OneToOne
+	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionario;
+
+	private String status;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_hora_inicial")

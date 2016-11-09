@@ -6,19 +6,17 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import br.com.modulo.core.model.escola.Grupo;
-
 @Embeddable
 public class UsuarioGrupoId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name = "codigo_usuario")
+	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "codigo_grupo")
+	@JoinColumn(name = "id_grupo")
 	private Grupo grupo;
 
 	public Usuario getUsuario() {
