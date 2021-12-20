@@ -45,7 +45,7 @@
 		<!-- Spring MVC -->
 		<spring-framework.version>4.3.3.RELEASE</spring-framework.version>
 		<!-- Spring Data JPA -->
-		<spring-data-jpa.version>1.10.4.RELEASE</spring-data-jpa.version>
+		<spring-data-jpa.version>1.11.23.RELEASE</spring-data-jpa.version>
 		<!-- Spring Security -->
 		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 
